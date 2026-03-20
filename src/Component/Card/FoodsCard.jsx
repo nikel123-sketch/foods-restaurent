@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 const FoodsCard = ({ food }) => {
-  const { title, catId, foodImg, price, category } = food;
+  const { title, catId,id, foodImg, price, category } = food;
 
   const handleAddToStore = () => {
     console.log("Added to store:", food);
@@ -17,11 +17,11 @@ const FoodsCard = ({ food }) => {
       <img
         src={foodImg}
         alt={title}
-        className="w-full h-48 object-cover rounded-xl mb-3"
+        className="w-full h-48 object-cover rounded-xl mb-3 border-4 border-green-500  "
       />
 
       {/* Content */}
-      <div className="space-y-2">
+      <div className="space-y-2 ">
         <h2 className="text-xl font-bold text-gray-800">{title}</h2>
 
         <p className="text-sm text-gray-500">
@@ -43,7 +43,7 @@ const FoodsCard = ({ food }) => {
 
         {/* Details */}
         <Link
-          href={`/foods/${catId}`}
+          href={`/foods/${id}`}
           className="flex-1 text-center bg-blue-500 text-white py-1.5 rounded-lg hover:bg-blue-600 transition"
         >
           Details
