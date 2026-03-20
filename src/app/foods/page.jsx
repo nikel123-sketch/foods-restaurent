@@ -1,32 +1,29 @@
-import FoodCard from "@/Component/Card/FoodCard";
-import React from "react";
+"use client"
+import React, { useEffect, useState } from 'react';
 
-const getfoods = async () => {
-  const res = await fetch(
-    "https://taxi-kitchen-api.vercel.app/api/v1/foods/random",
-  );
-  const data = await res.json();
-  return data.foods;
-};
 
-const FoodsPage = async () => {
-  const foods = await getfoods();
-
-  return (
-    <div className="p-5">
-      {/* Title */}
-      <h1 className="font-bold text-2xl text-center underline mb-6">
-        Total Foods :<span className="text-amber-400 ml-2">{foods.length}</span>
-      </h1>
-
-      {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {foods.map((food) => (
-          <FoodCard key={food.id} food={food} />
-        ))}
+// const getfoods=async()=>{
+//     const res =await fetch(
+//       `https://taxi-kitchen-api.vercel.app/api/v1/foods/random`,
+//     );
+//     const data=await res.json();
+//     return data.foods
+// }
+const FoodsPage = () => {
+    const [foods,setfoods]=useState([]);
+    useEffect(()=>{
+        fetch("https://taxi-kitchen-api.vercel.app/api/v1/foods/random")
+        .then(res=>res.json())
+        .then(data=>setfoods(data.foods))
+    },[])
+//    const foods=await getfoods()
+    return (
+      <div>
+        <h1 className='text-2xl text-center underline'>
+          Totall Foods <span className='font-bold text-amber-400'>({foods.length})</span>
+        </h1>
       </div>
-    </div>
-  );
+    );
 };
 
 export default FoodsPage;
